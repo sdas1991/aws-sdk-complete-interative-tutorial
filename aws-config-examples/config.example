@@ -1,0 +1,74 @@
+# AWS Config File Example
+# Location: ~/.aws/config
+
+# Default configuration
+[default]
+region = us-east-1
+output = json
+
+# Development profile
+[profile development]
+region = us-west-2
+output = json
+# Enable CLI auto-prompt
+cli_auto_prompt = on-partial
+
+# Production profile
+[profile production]
+region = eu-west-1
+output = json
+# Assume role configuration
+role_arn = arn:aws:iam::123456789012:role/ProductionRole
+source_profile = default
+
+# LocalStack profile
+[profile localstack]
+region = us-east-1
+output = json
+endpoint_url = http://localhost:4566
+
+# AWS SSO Configuration Example
+[profile sso-dev]
+sso_start_url = https://my-company.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 123456789012
+sso_role_name = DeveloperAccess
+region = us-east-1
+output = json
+
+[profile sso-prod]
+sso_start_url = https://my-company.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 987654321098
+sso_role_name = ReadOnlyAccess
+region = us-east-1
+output = json
+
+# Cross-account access
+[profile cross-account]
+role_arn = arn:aws:iam::999999999999:role/CrossAccountRole
+source_profile = default
+region = us-east-1
+# Optional: External ID for enhanced security
+external_id = MyExternalId
+# Optional: MFA device
+mfa_serial = arn:aws:iam::123456789012:mfa/username
+
+# Multi-region configuration
+[profile multi-region]
+region = us-east-1
+output = json
+s3 =
+    max_concurrent_requests = 20
+    max_queue_size = 10000
+    multipart_threshold = 64MB
+    multipart_chunksize = 16MB
+
+# Configuration with custom endpoint (for LocalStack/MinIO)
+[profile custom-endpoint]
+region = us-east-1
+output = json
+s3 =
+    endpoint_url = http://localhost:4566
+dynamodb =
+    endpoint_url = http://localhost:4566

@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # LocalStack - Local AWS Cloud Stack
+  localstack:
+    container_name: aws-localstack
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"            # LocalStack Gateway
+      - "4510-4559:4510-4559"  # External services port range
+    environment:
+      - SERVICES=s3,dynamodb,sqs,sns,lambda,secretsmanager,sts
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=docker
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "./localstack-data:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - aws-tutorial-network
+
+  # Kotlin Development Container
+  kotlin-app:
+    container_name: kotlin-aws-sdk-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - gradle-cache:/root/.gradle
+    environment:
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    depends_on:
+      - localstack
+    networks:
+      - aws-tutorial-network
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null
+
+  # AWS CLI Container (for manual testing)
+  aws-cli:
+    container_name: aws-cli-helper
+    image: amazon/aws-cli:latest
+    environment:
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    depends_on:
+      - localstack
+    networks:
+      - aws-tutorial-network
+    entrypoint: /bin/sh
+    command: -c "tail -f /dev/null"
+
+networks:
+  aws-tutorial-network:
+    driver: bridge
+
+volumes:
+  gradle-cache:
