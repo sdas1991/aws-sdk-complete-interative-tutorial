@@ -29,6 +29,41 @@ docker-compose exec kotlin-app gradle run
 
 That's it! Your AWS SDK learning environment is ready! 🎉
 
+**📖 New to this tutorial? Start here:** [Quick Start Guide →](./QUICKSTART.md)
+
+---
+
+## 📖 Comprehensive Documentation
+
+Before diving into the tutorials, familiarize yourself with these essential guides:
+
+### 🖥️ [Local Development Guide](./docs/LOCAL-DEVELOPMENT-GUIDE.md)
+**Complete navigation for local development with LocalStack**
+- Detailed project structure explanation
+- Docker environment architecture
+- Running and testing examples
+- Development workflow best practices
+- Comprehensive troubleshooting
+- **Start here if you're developing locally**
+
+### ☁️ [AWS Deployment Guide](./docs/AWS-DEPLOYMENT-GUIDE.md)
+**Using real AWS services and deploying to production**
+- AWS account setup and IAM configuration
+- Credentials management (CLI, SSO, environment variables)
+- Deploying to EC2, ECS/Fargate, Lambda
+- Security best practices
+- Cost management and billing
+- **Use this when ready to deploy to real AWS**
+
+### 🔄 [Environment Transition Guide](./docs/TRANSITION-GUIDE.md)
+**Step-by-step migration from LocalStack to AWS**
+- Pre-transition checklist
+- Service-by-service migration (S3, DynamoDB, SQS/SNS)
+- Parallel testing strategies
+- Rollback plans
+- Common issues and solutions
+- **Use this to transition from learning to production**
+
 ---
 
 ## 📚 What's Inside?

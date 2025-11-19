@@ -205,9 +205,41 @@ docker-compose restart localstack
 
 ## 🎓 Next Steps
 
-**You're all set!** Now dive into the tutorials:
+**You're all set!** Now choose your learning path:
 
-👉 **[Start Part 1: Foundation →](./lessons/PART-1-FOUNDATION.md)**
+### 📖 For Local Development (Using LocalStack)
+
+👉 **[Complete Local Development Guide](./docs/LOCAL-DEVELOPMENT-GUIDE.md)**
+- Detailed navigation of the entire tutorial
+- Understanding the Docker environment
+- Running examples
+- Development workflow
+- Testing and debugging
+- Comprehensive troubleshooting
+
+### ☁️ For Real AWS Deployment
+
+👉 **[AWS Deployment Guide](./docs/AWS-DEPLOYMENT-GUIDE.md)**
+- Setting up real AWS account
+- Configuring credentials
+- Deploying to EC2, ECS, Lambda
+- Security best practices
+- Cost management
+
+### 🔄 Transitioning from LocalStack to AWS
+
+👉 **[Environment Transition Guide](./docs/TRANSITION-GUIDE.md)**
+- Step-by-step migration process
+- Service-specific transitions
+- Testing strategies
+- Rollback plans
+
+### 📚 Start Learning AWS SDK
+
+👉 **[Part 1: Foundation Tutorial](./lessons/PART-1-FOUNDATION.md)**
+- Begin your AWS SDK journey
+- Learn the fundamentals
+- Hands-on exercises
 
 ---
 
@@ -217,5 +249,6 @@ docker-compose restart localstack
 2. **Use long polling** - LocalStack takes a few seconds to start
 3. **Check logs** - `docker-compose logs -f` is your friend
 4. **Experiment** - Modify the examples and see what happens!
+5. **Read the guides** - The comprehensive guides answer most questions!
 
 Happy learning! 🚀
